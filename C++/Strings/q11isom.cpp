@@ -4,8 +4,7 @@
 #include<vector>
 using namespace std;
 
-int main(){
-    bool isIsomorphic(string s, string t) {
+bool isIsomorphic(string s, string t) {
         if(s.length()!=t.length()) return false;
         vector<int> v(150,1000);
         for(int i=0;i<s.size();i++){
@@ -22,6 +21,4 @@ int main(){
             else if(v[idx]!=t[i]-s[i]) return false; 
         }
         return true;
-    }
-    return 0;
 }
