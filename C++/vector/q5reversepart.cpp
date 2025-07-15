@@ -13,7 +13,7 @@ int main(){
         v.push_back(x);
     }
     int i,j;
-    cout<<"Enter part(index) of the array you want to rotate(i,j):";
+    cout<<"Enter part(index) of the array you want to reverse(i,j):";
     cin>>i>>j;
     if (i < 0 || j >= n || i > j) {
         cout << "Invalid indices!" << endl;
