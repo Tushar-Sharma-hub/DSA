@@ -9,7 +9,7 @@ void generatebinary(string s,int n){
         return;
     }
     generatebinary(s+'0',n);
-    if(s[s.size()-1]!=1) generatebinary(s+'1',n);
+    if(s=="" || s[s.length()-1]=='0') generatebinary(s+'1',n);
 }
 
 int main(){
