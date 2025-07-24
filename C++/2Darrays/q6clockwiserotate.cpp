@@ -1,4 +1,4 @@
-//Roate the matrix by 90 degree.--LC48
+//Rotate the matrix by 90 degree.--LC48
 #include<iostream>
 using namespace std;
 int main(){
