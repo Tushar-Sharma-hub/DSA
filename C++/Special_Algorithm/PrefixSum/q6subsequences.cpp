@@ -12,28 +12,21 @@ vector<int> answerQueries(vector<int>& nums, vector<int>& queries) {
     int n=nums.size();
     int m=queries.size();
     sort(nums.begin(),nums.end());
-    vector<int> pre(n);
-    pre[0]=nums[0];
     for(int i=1;i<n;i++){
-        pre[i]=pre[i-1]+nums[i];
+        nums[i]=nums[i-1]+nums[i];
     }
     vector<int> ans(m);
     for(int i=0;i<m;i++){
-        int idx=0;
-        for(int j=0;j<n;j++){
-            if(pre[j]>queries[i]){
-                if(j==0) break;
-                else{
-                    idx=j;
-                    break;
-                }
-            }
-            if(pre[j]==queries[i]){
-                idx=j+1;
-                break;
+        int len=0,low=0,high=n-1;
+        while(low<=high){
+            int mid=low+(high-low)/2;
+            if(nums[mid]>queries[i]) high=mid-1;
+            else{
+                len=mid+1;
+                low=mid+1;
             }
         }
-        ans.push_back(idx);
+        ans[i]=len;
     }
     return ans;
 }
