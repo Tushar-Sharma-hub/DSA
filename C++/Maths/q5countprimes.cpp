@@ -8,23 +8,23 @@ class Solution {
 public:
     int countPrimes(int n) {
         if (n <= 2) return 0;
-        vector<int> v(n + 1);
-        for (int i = 0; i <= n; i++) {
-            v[i] = i;
-        }
-        v[0] = v[1] = 0;
+
+        vector<bool> isPrime(n + 1, true);
+        isPrime[0] = isPrime[1] = false;
+
         for (int i = 2; i * i <= n; i++) {
-            if (v[i] != 0) {
-                int prod = i * i; //Set 0 inplace of prod of prime.
+            if (isPrime[i]) {
+                int prod = i * i;  // start from i*i
                 while (prod <= n) {
-                    v[prod] = 0; //setting composite no. to 0.
+                    isPrime[prod] = false;
                     prod += i;
                 }
             }
         }
+
         int count = 0;
         for (int i = 2; i < n; i++) {
-            if (v[i] != 0) count++;
+            if (isPrime[i]) count++;
         }
         return count;
     }
