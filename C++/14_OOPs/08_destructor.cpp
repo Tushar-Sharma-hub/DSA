@@ -1,3 +1,4 @@
+//Destructor cleans up when an object dies.
 #include <iostream>
 using namespace std;
 

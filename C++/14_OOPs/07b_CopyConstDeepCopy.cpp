@@ -13,7 +13,7 @@ public:
 
     // Deep Copy Constructor (allocates new memory)
     Student(const Student &s) {
-        roll = new int(*s.roll);  // ✅ new memory allocated
+        roll = new int(*s.roll);  //new memory allocated
         cout << "Deep Copy constructor called" << endl;
     }
 
