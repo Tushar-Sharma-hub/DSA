@@ -1,6 +1,7 @@
 //Reverse an array without any extra array
 //Logic-We we take i at starting j at end then swap it until i<=j.
 #include<iostream>
+#include<vector>
 using namespace std;
 int main(){
     int n;

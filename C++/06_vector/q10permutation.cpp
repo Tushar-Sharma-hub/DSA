@@ -1,6 +1,7 @@
 //Find the next permutation of array.(if not possible then print the sorted array in asc.)-31
 #include<iostream>
 #include<vector>
+#include<algorithm>
 using namespace std;
 
 void nextPermutation(vector<int>& v){
