@@ -1,6 +1,7 @@
 // Two elements of an array a, a[il and alfl form an inversion if a[il › a[j] and i ‹ j. 
 // Given an array of integers. Find the Inversion Count in the array•
 #include<iostream>
+#include<vector>
 using namespace std;
 
 void merge(vector<int>& a,vector<int>& b,vector<int>& c){ //To merge two sorted array

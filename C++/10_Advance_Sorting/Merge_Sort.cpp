@@ -1,5 +1,6 @@
 //Time Complexity-O(n.logn)
 #include<iostream>
+#include<vector>
 using namespace std;
 
 void merge(vector<int>& a,vector<int>& b,vector<int>& c){ //To merge two sorted array
