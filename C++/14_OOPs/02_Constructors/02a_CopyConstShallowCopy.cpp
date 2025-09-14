@@ -4,7 +4,7 @@ using namespace std;
 
 class Student {
     int roll;
-public:
+    public:
     // Parameterized constructor
     Student(int r) {
         roll = r;
