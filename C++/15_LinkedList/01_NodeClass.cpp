@@ -42,3 +42,16 @@ int main(){
         temp=*(temp.next);
     }
 }
+// To overcome the limitations of arrays, linked lists are used.
+// 👉 A Linked List is a linear data structure where elements (called nodes) are stored at non-contiguous memory locations.
+// Each node has two parts:
+// Data → the value of the element.
+// Pointer/Reference → address of the next node.
+// Advantages of Linked List over Array
+// Dynamic Size
+// Memory allocation is done at runtime; list can grow or shrink as needed.
+// Efficient Insertions/Deletions
+// No shifting required, just adjust pointers.
+// Time complexity: O(1) (if position is known).
+// Memory Utilization
+// No need for contiguous memory, better handling of fragmented memory.
