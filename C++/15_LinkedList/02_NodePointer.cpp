@@ -16,6 +16,13 @@ void display(Node* head){
         temp=temp->next;
     }
 }
+void insertAtEnd(Node* head,int val){
+    Node* newnode=new Node(val);
+    while(head->next!=NULL){ //Here the og head will not change but the LL will change itself.
+        head=head->next;
+    }
+    head->next=newnode;
+}
 int main(){
     Node* a=new Node(10);
     Node* b=new Node(20);
@@ -27,5 +34,7 @@ int main(){
     display(a);
     //By using Node Pointer we can access values in easy manner.
     //Like to access c :
-    cout<<endl<<"C : "<<a->next->next->val; //Without pointers we have to use brackets to avoid errors.Which can be complex for us.
+    cout<<endl<<"C : "<<a->next->next->val<<endl; //Without pointers we have to use brackets to avoid errors.Which can be complex for us.
+    insertAtEnd(a,50); //Using O(N)
+    display(a);
 }
