@@ -1,4 +1,5 @@
 //Implementation Of LL.
+//Insertion , Deletion.
 #include<iostream>
 using namespace std;
 class Node{ //User-Defined data type.
