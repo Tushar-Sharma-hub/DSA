@@ -17,7 +17,7 @@ public:
             temp.push(i);
         }
         vector<int> ans;
-        int j=0;
+        int j=0; // j is going through ngi array and check if it's valid <= i+k then for that mx=arr[j];
         for(int i=0;i<n-k+1;i++){
             if(j<i) j=i;
             int mx=arr[i];
