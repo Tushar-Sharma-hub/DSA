@@ -1,5 +1,6 @@
 //Evaluate infix to postfix expression. 
 //Evaluate postfix expression.
+//Postfix to infix and prefix. 
 #include<iostream>
 #include<stack>
 using namespace std;
@@ -41,7 +42,23 @@ string postfixToInfix(string str){
             char ch=str[i];
             string val2=st.top();st.pop();
             string val1=st.top();st.pop();
-            ans=val1+ch+val2;
+            ans = "(" + val1 + ch + val2 + ")";
+            st.push(ans);
+        }
+    }
+    return ans;
+}
+
+string postfixToPrefix(string str){
+    string ans;
+    stack<string> st;
+    for(int i=0;i<str.size();i++){
+        if(str[i]>='0' && str[i]<='9'){ st.push(to_string(str[i]-'0'));}
+        else{
+            char ch=str[i];
+            string val2=st.top();st.pop();
+            string val1=st.top();st.pop();
+            ans=ch+val1+val2;
             st.push(ans);
         }
     }
@@ -96,10 +113,17 @@ int main(){
         val.push(ans);
     }
 
-    cout<<val.top()<<endl;
-    cout<<postfixEvaluation(ans)<<endl;
+    cout<<"Infix to Postfix: "<<val.top()<<endl;
+    cout<<"Postfix Evaluation: "<<postfixEvaluation(ans)<<endl;
+
+    cout<<endl<<"Postfix to Infix: ";
     string infix=postfixToInfix(ans);
     for(int i=0;i<infix.size();i++){
         cout<<infix[i];
+    }
+    cout<<endl<<"Postfix to Prefix: ";
+    string prefix=postfixToPrefix(ans);
+    for(int i=0;i<prefix.size();i++){
+        cout<<prefix[i];
     }
 }
