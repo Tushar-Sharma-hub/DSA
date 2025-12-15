@@ -46,7 +46,7 @@ string postfixToInfix(string str){
             st.push(ans);
         }
     }
-    return ans;
+    return st.top();
 }
 
 string postfixToPrefix(string str){
@@ -62,7 +62,7 @@ string postfixToPrefix(string str){
             st.push(ans);
         }
     }
-    return ans;
+    return st.top();
 }
 
 int main(){
@@ -71,7 +71,7 @@ int main(){
     stack<string> val;
     stack<char> op;
 
-    for(int i=0;i<str.length();i++){
+    for(int i=0;i<str.size();i++){
         if(str[i]>='0' && str[i]<='9'){
             val.push(to_string(str[i]-'0'));
         }
