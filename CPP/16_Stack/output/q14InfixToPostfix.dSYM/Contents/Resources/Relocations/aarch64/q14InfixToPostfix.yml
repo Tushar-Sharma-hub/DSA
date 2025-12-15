@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/vishalsharma/Documents/DSA/CPP/16_Stack/output/q14InfixToPostfix'
+relocations:     []
+...
