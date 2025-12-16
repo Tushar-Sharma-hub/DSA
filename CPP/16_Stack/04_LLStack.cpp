@@ -48,6 +48,20 @@ public:
     bool isEmpty() {
         return topNode == NULL;
     }
+
+    void display() {
+        if (topNode == NULL) {
+            cout << "Stack is Empty\n";
+            return;
+        }
+
+        Node* temp = topNode;
+        while (temp) {
+            cout << temp->data << " ";
+            temp = temp->next;
+        }
+        cout << endl;
+    }
 };
 
 int main() {
@@ -57,14 +71,16 @@ int main() {
     s.push(20);
     s.push(30);
 
+    s.display();
+
     cout << "Top: " << s.top() << endl;
 
     s.pop();
-    cout << "Top after pop: " << s.top() << endl;
+    s.display();
 
     s.pop();
     s.pop();
-    s.pop();   // Underflow check
+    s.pop();
 
     return 0;
 }
