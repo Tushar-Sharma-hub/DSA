@@ -9,8 +9,8 @@ public:
             while(dq.size()>0 && nums[i]>nums[dq.back()])
             dq.pop_back();
             dq.push_back(i);
-            int j = i-k+1;
-            while(dq.front()<j) dq.pop_front();
+            int j = i-k+1;//i ke piche vale ka idx(i se window start hori h)
+            while(dq.front()<j) dq.pop_front(); //agr window ke bahr h toh pop krdo 
             if(i>=k-1) ans.push_back(nums[dq.front()]);
         }
         return ans;
