@@ -32,7 +32,7 @@ void mergeSortedArrays(vector<int>& a,vector<int>& b,vector<int>& c){
             k++;
             i++;
         }
-    } 
+    }
 }
 
 //Leet Code 88.
