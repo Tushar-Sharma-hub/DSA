@@ -41,6 +41,16 @@ int maxtree(Node* root){
     return max(root->val,max(maxtree(root->left),maxtree(root->right)));
 }
 
+int mintree(Node* root){
+    if(root==NULL) return INT_MAX;
+    return min(root->val,min(mintree(root->left),mintree(root->right)));
+}
+
+int prod(Node* root){ //product of all nodes.
+    if(root==NULL) return 1;
+    return root->val*prod(root->left)*prod(root->right);
+}
+
 int main(){
     Node* a=new Node(1); //root
     Node* b=new Node(2);
@@ -62,4 +72,6 @@ int main(){
     cout<<endl<<sum(a);
     cout<<endl<<maxtree(a);
     cout<<endl<<levels(a);
+    cout<<endl<<prod(a);
+    cout<<endl<<mintree(a);
 }
