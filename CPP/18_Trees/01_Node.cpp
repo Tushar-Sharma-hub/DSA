@@ -51,6 +51,34 @@ int prod(Node* root){ //product of all nodes.
     return root->val*prod(root->left)*prod(root->right);
 }
 
+void displayLvlval(Node* root,int lvl,int n){ //Print nth lvl elements.Left to right.
+    if(root==NULL) return;
+    if(lvl==n){ 
+        cout<<root->val<<" ";
+        return;
+    }
+    displayLvlval(root->left,lvl+1,n);
+    displayLvlval(root->right,lvl+1,n);
+}
+
+void displayLvlvalReverse(Node* root,int lvl,int n){ //Print nth lvl elements.Right to left.
+    if(root==NULL) return;
+    if(lvl==n){ 
+        cout<<root->val<<" ";
+        return;
+    }
+    displayLvlvalReverse(root->right,lvl+1,n);
+    displayLvlvalReverse(root->left,lvl+1,n);
+}
+
+void lvlTraversal(Node* root){ 
+    int lvl=levels(root);
+    for(int i=1;i<=lvl;i++){
+        displayLvlvalReverse(root,1,i);
+        cout<<endl;
+    }
+}
+
 int main(){
     Node* a=new Node(1); //root
     Node* b=new Node(2);
@@ -74,4 +102,8 @@ int main(){
     cout<<endl<<levels(a);
     cout<<endl<<prod(a);
     cout<<endl<<mintree(a);
+    int n=2;
+    displayLvlval(a,1,n);
+    cout<<endl;
+    lvlTraversal(a);
 }
