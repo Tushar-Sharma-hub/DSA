@@ -1,4 +1,5 @@
 #include<iostream>
+#include<queue>
 using namespace std;
 class Node{
 public:
@@ -71,11 +72,28 @@ void displayLvlvalReverse(Node* root,int lvl,int n){ //Print nth lvl elements.Ri
     displayLvlvalReverse(root->left,lvl+1,n);
 }
 
-void lvlTraversal(Node* root){ 
+void lvlTraversal(Node* root){ //DFS
     int lvl=levels(root);
     for(int i=1;i<=lvl;i++){
         displayLvlvalReverse(root,1,i);
         cout<<endl;
+    }
+}
+
+void lvlOrderTraversalQueue(Node* root){ //BFS
+    if(root==NULL) return;
+    queue<Node*> q;
+    q.push(root);
+    while(q.size()>0){
+        Node* temp=q.front();
+        q.pop();
+        cout<<temp->val<<" ";
+        if(temp->left!=NULL){
+            q.push(temp->left);
+        }
+        if(temp->right!=NULL){
+            q.push(temp->right);
+        }
     }
 }
 
@@ -95,15 +113,17 @@ int main(){
     c->left=f;
     c->right=g;
 
-    displayTree(a);
-    cout<<endl<<sizeOfTree(a);
-    cout<<endl<<sum(a);
-    cout<<endl<<maxtree(a);
-    cout<<endl<<levels(a);
-    cout<<endl<<prod(a);
-    cout<<endl<<mintree(a);
-    int n=2;
-    displayLvlval(a,1,n);
-    cout<<endl;
-    lvlTraversal(a);
+    // displayTree(a);
+    // cout<<endl<<sizeOfTree(a);
+    // cout<<endl<<sum(a);
+    // cout<<endl<<maxtree(a);
+    // cout<<endl<<levels(a);
+    // cout<<endl<<prod(a);
+    // cout<<endl<<mintree(a);
+    // int n=2;
+    // displayLvlval(a,1,n);
+    // cout<<endl;
+    // lvlTraversal(a);
+    // cout<<endl;
+    lvlOrderTraversalQueue(a);
 }
