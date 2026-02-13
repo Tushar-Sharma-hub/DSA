@@ -1,4 +1,4 @@
-//701
+// 1008. Construct Binary Search Tree from Preorder Traversal
 class Solution {
 public:
     void insert(TreeNode* root, int val){
@@ -17,12 +17,11 @@ public:
             else insert(root->left,val);
         }
     }
-    TreeNode* insertIntoBST(TreeNode* root, int val) {
-        if(root==NULL){
-            TreeNode* ans=new TreeNode(val);
-            return ans;
+    TreeNode* bstFromPreorder(vector<int>& preorder) {
+        TreeNode* root=new TreeNode(preorder[0]);
+        for(int i=1;i<preorder.size();i++){
+            insert(root,preorder[i]);
         }
-        insert(root,val);
         return root;
     }
 };
