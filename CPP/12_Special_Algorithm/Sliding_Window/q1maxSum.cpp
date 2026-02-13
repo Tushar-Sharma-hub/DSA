@@ -13,7 +13,6 @@ int maxsubarray(vector<int> v,int k){
         sum=sum+v[j]-v[i-1];
         if(sum>maxsum) {
             maxsum=sum;
-            maxidx=i;
         }
         i++;j++;
     }
