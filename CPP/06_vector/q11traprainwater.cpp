@@ -19,7 +19,7 @@ int trap(vector<int>& height) {
     }
 
     int water = 0;
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) { //the first and last bars cannot trap water
         water += min(leftMax[i], rightMax[i]) - height[i];
     }
 
