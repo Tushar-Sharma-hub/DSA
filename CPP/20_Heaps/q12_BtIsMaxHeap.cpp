@@ -1,7 +1,6 @@
 //You are given the root of a binary tree, and the task is to determine whether it satisfies the properties of a max-heap.
 class Solution {
   public:
-  
     bool isCBT(Node* root, int n){
         queue<Node*> q;
         q.push(root);
