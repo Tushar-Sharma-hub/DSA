@@ -13,7 +13,7 @@ void bubblesort(vector<int>& arr){ //Time Complexity-Best case-O(n) Avg Case-O(n
     int n=arr.size();
     for(int i=0;i<n;i++){
         bool swaping=false; //We use this bool to break the 
-        for(int j=0;j<n-i-1;j++){
+        for(int j=0;j<n-i-1;j++){ //sbhi elements ko compare krna h.
             if(arr[j]>arr[j+1]){
                 swap(arr[j],arr[j+1]);
                 swaping=true;
