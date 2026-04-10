@@ -10,7 +10,7 @@ vector<int> nextGreater(vector<int> arr){
     ans[n-1]=-1;
     temp.push(arr[n-1]);
     for(int i=n-2;i>=0;i--){
-        while(temp.size()!=0 && temp.top()<arr[i]) temp.pop(); //isme
+        while(temp.size()!=0 && temp.top()<=arr[i]) temp.pop();
         if(temp.size()==0) ans[i]=-1;
         else ans[i]=temp.top();
         temp.push(arr[i]);
