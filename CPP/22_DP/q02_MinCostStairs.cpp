@@ -24,8 +24,6 @@ public:
 };
 
 //Tabulation
-
-// 
 class Solution {
 public:
     int minCostClimbingStairs(vector<int>& cost) {
