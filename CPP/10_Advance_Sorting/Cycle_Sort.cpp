@@ -1,3 +1,8 @@
+// Cyclic Sort is used for arrays containing numbers in a fixed range, usually 1 to n or 0 to n−1.
+// It works by placing each element directly at its correct index (value - 1 or value).
+// If an element is not at its correct position, swap it with the element at its correct index.
+// Continue until every element is in its correct position; each element is moved at most once to its final place.
+// Time Complexity: O(n), Space Complexity: O(1).
 #include<iostream>
 using namespace std;
 
