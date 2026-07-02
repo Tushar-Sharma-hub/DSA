@@ -9,7 +9,7 @@ void selectionsort(vector<int> & v){
     for(int i=0;i<n;i++){
         int smallestidx=i;
         for(int j=i+1;j<n;j++){
-            if(v[j]<v[i]) smallestidx=j;
+            if(v[j]<v[smallestidx]) smallestidx=j;
         }
         swap(v[i],v[smallestidx]);
     }
