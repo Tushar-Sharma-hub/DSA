@@ -1,3 +1,8 @@
+// Choose a pivot element (here, the middle element).
+// Count how many elements are <= pivot to find the pivot's correct sorted position.
+// Swap the pivot to its correct index.
+// Use two pointers to swap misplaced elements so that left side has <= pivot and right side has > pivot.
+// Recursively apply the same process to the left and right subarrays until the array is sorted.
 #include<iostream>
 using namespace std;
 
@@ -10,11 +15,12 @@ int partition(int arr[],int si,int ei){
     int pivotidx=count+si;
     swap(arr[(si+ei)/2],arr[pivotidx]);
     int i=si,j=ei;
-    while(i<j){
-        if(pivot>=arr[i]) i++;
-        if(pivot<arr[j]) j--;
-        else if(pivot<arr[i] && pivot>=arr[j]){
-            swap(arr[i],arr[j]);
+    while(i < pivotidx && j > pivotidx){
+        while(arr[i] <= pivot) i++;
+        while(arr[j] > pivot) j--;
+
+        if(i < pivotidx && j > pivotidx){
+            swap(arr[i], arr[j]);
             i++;
             j--;
         }
