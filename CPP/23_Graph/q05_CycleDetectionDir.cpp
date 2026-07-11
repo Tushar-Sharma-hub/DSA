@@ -1,17 +1,16 @@
 // Directed Graph Cycle
 // Given a Directed Graph with V vertices (Numbered from 0 to V-1) and E edges, check whether it contains any cycle or not.
 // The graph is represented as a 2D vector edges[][], where each entry edges[i] = [u, v] denotes an edge from vertex u to v.
+
+//Steps:
+// 1. Maintain pathVisited array to keep track of nodes in the current path of DFS.
+// 2. If we encounter a visited node that is also present in the current path, then we have found a cycle in the graph.
 class Solution {
 public:
-    bool dfs(int node, vector<vector<int>>& adj,
-             vector<bool>& visited,
-             vector<bool>& pathVisited) {
-
+    bool dfs(int node, vector<vector<int>>& adj,vector<bool>& visited,vector<bool>& pathVisited) {
         visited[node] = true;
         pathVisited[node] = true;
-
         for (int neighbour : adj[node]) {
-
             if (!visited[neighbour]) {
                 if (dfs(neighbour, adj, visited, pathVisited))
                     return true;
@@ -20,7 +19,6 @@ public:
                 return true;
             }
         }
-
         pathVisited[node] = false;
         return false;
     }

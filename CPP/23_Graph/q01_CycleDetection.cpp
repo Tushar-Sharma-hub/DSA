@@ -4,7 +4,10 @@
 // Note: The graph can have multiple component.
 //T.C: O(V+E) S.C: O(V+E)
 
-//Using DFS
+//Using DFS - using back edge detection
+// Steps:
+// 1. Maintain parent of each node while traversing the graph using DFS.
+// 2. If we encounter a visited node that is not the parent of the current node, then we have found a cycle in the graph.
 class Solution {
   public:
     bool cyc(vector<vector<int>>& ver,vector<bool>& visited,int par,int v){
