@@ -41,7 +41,7 @@ public:
     vector<int> findOrder(int n, vector<vector<int>>& v) {
         vector<vector<int>> graph(n);
         for(int i=0;i<v.size();i++){
-            graph[v[i][0]].push_back(v[i][1]);
+            graph[v[i][1]].push_back(v[i][0]);
         }
         if(!canFinish(n,graph)) return {};
         vector<bool> visited(n,false);
@@ -51,6 +51,7 @@ public:
                 dfs(i,graph,visited,ans);
             }
         }
+        reverse(ans.begin(),ans.end());
         return ans;
     }
 };

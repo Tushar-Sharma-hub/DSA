@@ -21,7 +21,7 @@ public:
     bool canFinish(int numCourses, vector<vector<int>>& v) {
         vector<vector<int>> graph(numCourses);
         for(int i=0;i<v.size();i++){
-            graph[v[i][0]].push_back(v[i][1]);
+            graph[v[i][1]].push_back(v[i][0]);
         }
         vector<bool> vis(numCourses,false);
         vector<bool> path(numCourses,false);
