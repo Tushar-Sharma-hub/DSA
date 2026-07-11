@@ -4,6 +4,7 @@
 //It is used to solve dependency problems like task scheduling, course prerequisite problems, etc. 
 
 //Using Stack - DFS
+//T.C= O(V+E) S.C=O(V+E)
 class Solution {
   public:
     void dfs(int node, vector<vector<int>>& adj,vector<bool>& visited,stack<int>& st) {
