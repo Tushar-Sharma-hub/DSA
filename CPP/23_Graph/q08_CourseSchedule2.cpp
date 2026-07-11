@@ -29,6 +29,9 @@ public:
         }
         return true;
     }
+    //Topological Sorting using DFS - In this approach, we perform a DFS traversal of the graph and keep track of the nodes in a stack.
+    // After the DFS traversal is complete, we push node to ans vector. Finally, we reverse the ans vector to get the topological order of the courses.
+    //T.C= O(V+E) S.C=O(V+E)
     void dfs(int node, vector<vector<int>>& adj,vector<bool>& visited,vector<int>& ans) {
         visited[node] = true;
         for (int neighbour : adj[node]) {
@@ -43,7 +46,7 @@ public:
         for(int i=0;i<v.size();i++){
             graph[v[i][1]].push_back(v[i][0]);
         }
-        if(!canFinish(n,graph)) return {};
+        if(!canFinish(n,graph)) return {}; //cycle detected, not possible to finish all courses
         vector<bool> visited(n,false);
         vector<int> ans;
         for(int i=0;i<n;i++){
