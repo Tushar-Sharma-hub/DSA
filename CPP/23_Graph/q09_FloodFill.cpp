@@ -11,6 +11,9 @@
 // The process stops when there are no more adjacent pixels of the original color to update.
 // Return the modified image after performing the flood fill.
 
+
+//Jst bfs traversal of the graph and change the color of the pixel to the new color.
+//T.C= O(V+E) S.C=O(V+E)
 class Solution {
 public:
     vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {

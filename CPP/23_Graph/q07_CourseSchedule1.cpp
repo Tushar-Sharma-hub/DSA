@@ -4,6 +4,8 @@
 
 // For example, the pair [0, 1], indicates that to take course 0 you have to first take course 1.
 // Return true if you can finish all courses. Otherwise, return false.
+
+//Just check cycle exist in this directed graph or not. If cycle exist then return false else return true.
 class Solution {
 public:
     bool isCycle(int node,vector<vector<int>>& graph,vector<bool> & vis,vector<bool>& path){
