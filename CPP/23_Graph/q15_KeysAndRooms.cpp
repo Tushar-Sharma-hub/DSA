@@ -6,6 +6,7 @@
 // Given an array rooms where rooms[i] is the set of keys that you can obtain if you visited room i,
 // return true if you can visit all the rooms, or false otherwise.
 
+//With Bfs
 class Solution {
 public:
     bool canVisitAllRooms(vector<vector<int>>& rooms) {
@@ -27,6 +28,33 @@ public:
         for(int i=0;i<visited.size();i++){
             if(visited[i]==false) return false;
         }
+        return true;
+    }
+};
+
+//With dfs
+class Solution {
+public:
+    void dfs(int room, vector<vector<int>>& rooms, vector<bool>& visited) {
+        visited[room] = true;
+
+        for (int key : rooms[room]) {
+            if (!visited[key]) {
+                dfs(key, rooms, visited);
+            }
+        }
+    }
+
+    bool canVisitAllRooms(vector<vector<int>>& rooms) {
+        int n = rooms.size();
+        vector<bool> visited(n, false);
+
+        dfs(0, rooms, visited);
+
+        for (bool v : visited) {
+            if (!v) return false;
+        }
+
         return true;
     }
 };
