@@ -1,5 +1,7 @@
 /*
-================== Bellman-Ford ==================
+================== Bellman-Ford ================== 
+
+-> Used to find the shortest path from a single source to all other vertices in a weighted graph.
 
 -> Single Source Shortest Path (SSSP)
 
