@@ -6,6 +6,12 @@
 // You want to determine if there is a valid path that exists from vertex source to vertex destination.
 // Given edges and the integers n, source, and destination, return true if there is a valid path from source to destination,
 // or false otherwise.
+
+//Approach:
+// 1. Create an adjacency list to represent the graph.
+// 2. Create a visited array to keep track of visited nodes.
+// 3. Use BFS to traverse the graph starting from the source node.
+// 4. If we reach the destination node during the traversal, return true.
 class Solution {
 public:
     bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
