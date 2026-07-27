@@ -9,7 +9,8 @@
 //Using kahn's algorithm for topological sorting. In this approach, we first calculate the indegree of each node in the graph.
 // Then we add all the nodes with indegree 0 to a queue. We then process the nodes in the queue one by one, 
 //adding them to the answer vector and reducing the indegree of their neighbors. 
-//If any neighbor's indegree becomes 0, we add it to the queue
+//If any neighbor's indegree becomes 0, we add it to the queue 
+//No need to worry about cycle detection as if cycle exist then the size of ans vector will be less than n and we will return empty vector.
 //T.C= O(V+E) S.C=O(V+E)
 class Solution {
 public:

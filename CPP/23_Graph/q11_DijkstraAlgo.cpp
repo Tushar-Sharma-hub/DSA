@@ -6,65 +6,42 @@
 // All edge weights must be non-negative.
 // If negative edges exist, use Bellman-Ford instead.
 
-#include <bits/stdc++.h>
-using namespace std;
-
+//Approach:
+// 1. Create a priority queue to store the nodes of the graph.
+// 2. Create a vector to store the distance of each node from the source node.
+// 3. Push the source node into the priority queue with distance 0.
+// 4. While the priority queue is not empty, do the following:
+//    a. Pop the top node from the priority queue.
+//    b. If the distance of the popped node is greater than the distance stored in the distance vector,continue to the next iteration.
+//    c. For each adjacent node of the popped node, 
+//    if the distance of the popped node plus the weight of the edge is less than the distance stored in the distance vector, 
+//    update the distance vector and push the adjacent node into the priority queue.
 vector<int> dijkstra(int V, vector<pair<int,int>> adj[], int src)
 {
-    // Min Heap
-    // Stores {distance, node}
-    // The node with the smallest distance is always on top.
     priority_queue<
         pair<int,int>,
         vector<pair<int,int>>,
         greater<pair<int,int>>
     > pq;
-
-    // Distance array
-    // Initially every node is unreachable (INF)
     vector<int> dist(V, INT_MAX);
-
-    // Distance from source to itself is 0
     dist[src] = 0;
-
-    // Push source node into priority queue
     pq.push({0, src});
-
-    // Continue until all reachable nodes are processed
     while (!pq.empty())
     {
-        // Get the node with the smallest current distance
         auto [distance, node] = pq.top();
         pq.pop();
-
-        // If this is an outdated entry, skip it.
-        // Example:
-        // Queue has (5,2) but dist[2] is already 3.
-        // Then 5 is useless.
         if (distance > dist[node])
             continue;
-
-        // Traverse all neighbours of the current node
         for (auto it : adj[node])
         {
             int adjNode = it.first;   // Neighbour
             int weight = it.second;   // Edge weight
-
-            // Relaxation Step
-            // Check if going through 'node'
-            // gives a shorter path to adjNode
             if (distance + weight < dist[adjNode])
             {
-                // Update shortest distance
                 dist[adjNode] = distance + weight;
-
-                // Push updated distance into the min heap
-                // (Duplicates are allowed. Older ones are ignored later.)
                 pq.push({dist[adjNode], adjNode});
             }
         }
     }
-
-    // Return shortest distances from source
     return dist;
 }

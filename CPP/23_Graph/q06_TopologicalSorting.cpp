@@ -1,10 +1,14 @@
 //Topolofical Sorting
 //It is only possible for Directed Acyclic Graph(DAG).
+//DAG is a directed graph with no cycles.
 //Linear ordering of vertices such that for every directed edge u->v, vertex u comes before v in the ordering.
 //It is used to solve dependency problems like task scheduling, course prerequisite problems, etc. 
 
 //Using Stack - DFS
 //T.C= O(V+E) S.C=O(V+E)
+//Approach:
+// 1. Use dfs to traverse the graph and keep track of the nodes in a stack.
+// 2. After the DFS traversal is complete, we push node to ans vector.
 class Solution {
   public:
     void dfs(int node, vector<vector<int>>& adj,vector<bool>& visited,stack<int>& st) {
