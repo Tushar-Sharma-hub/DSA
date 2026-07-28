@@ -3,6 +3,7 @@
 //without any cycles and with the minimum possible total edge weight.
 //If there are V vertices in the graph, then the MST will have exactly V-1 edges.
 //Greedy Algo
+//In prim's algo, we start from the src node and keep adding the minimum weight edge to the MST until we have V-1 edges in the MST.
 
 //Approach:
 // 1. Create a priority queue to store the edges of the graph.
