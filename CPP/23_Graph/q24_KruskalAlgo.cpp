@@ -8,9 +8,14 @@
 //If the two vertices of the edge belong to different sets, then adding this edge will not form a cycle 
 //and we will include this edge in the MST and merge the two sets.
 //Time Complexity: O(ElogE + E*4*α) where E is the number of edges and 
-//α is the inverse Ackermann function which is very slow growing and can be considered as a constant for all practical purposes. 
+//α is the inverse Ackermann function which is very slow growing and can be considered as a constant(O(1)) for all practical purposes. 
 //So the time complexity can be considered as O(ElogE).
 //Space Complexity: O(V) where V is the number of vertices in the graph.
+// T.C of find() is O(α(V)) ≈ O(1)
+// T.C of union() is O(α(V)) ≈ O(1)
+// T.C of Cycle check (find(u) == find(v))	O(α(V)) ≈ O(1)
+// T.C of Sort edges O(E log E)
+// T.C of Kruskal's Algorithm O(E log E)
 
 class Solution {
 public:
