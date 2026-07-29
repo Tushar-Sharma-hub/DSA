@@ -26,7 +26,7 @@ class DisjointSetUnion {
     //If the representatives are different, we merge the sets by making one representative the parent of the other.
     //We also use the rank array to keep track of the depth of the trees representing the sets,
     //and we always attach the smaller tree to the root of the larger tree to keep the overall depth of the trees as small as possible.
-    void unionBySize(int u, int v) {
+    void unionByRank(int u, int v) {
         u = find(u);
         v = find(v);
         if (u == v)
@@ -56,7 +56,6 @@ class DisjointSetUnion {
     }
 };
 
-T.C=
 int main() {
 
     DisjointSetUnion dsu(6);
