@@ -7,37 +7,33 @@
 
 class Solution {
 public:
-    int dist(vector<int>& a, vector<int>& b) {
-        return abs(a[0] - b[0]) + abs(a[1] - b[1]);
+    int manDist(vector<vector<int>>& points, int p1, int p2) {
+        return abs(points[p1][0] - points[p2][0])+abs(points[p1][1] - points[p2][1]);
     }
+
     int minCostConnectPoints(vector<vector<int>>& points) {
         int n = points.size();
-        vector<vector<pair<int,int>>> adj(n);
-        for(int i = 0; i < n; i++) {
-            for(int j = i + 1; j < n; j++) {
-                int d = dist(points[i], points[j]);
-                adj[i].push_back({d, j});
-                adj[j].push_back({d, i});
-            }
-        }
         priority_queue<pair<int,int>,
                        vector<pair<int,int>>,
                        greater<pair<int,int>>> pq;
-        vector<bool> vis(n, false);
-        pq.push({0,0});
-        int ans = 0;
-        while(!pq.empty()) {
-            auto [wt,node] = pq.top();
+        vector<bool> mstSet(n, false);
+        int mstCost = 0;
+        pq.push({0, 0});
+        while (!pq.empty()) {
+            auto p = pq.top();
             pq.pop();
-            if(vis[node]) continue;
-            vis[node] = true;
-            ans += wt;
-            for(auto [w,v] : adj[node]) {
-                if(!vis[v]) {
-                    pq.push({w,v});
+            int wt = p.first;
+            int node = p.second;
+            if (mstSet[node]) continue;
+            mstSet[node] = true;
+            mstCost += wt;
+            for (int next = 0; next < n; next++) {
+                if (!mstSet[next]) {
+                    int dist = manDist(points, node, next);
+                    pq.push({dist, next});
                 }
             }
         }
-        return ans;
+        return mstCost;
     }
 };
