@@ -6,10 +6,10 @@
 
 //Intuition:
 // Like bellman ford algo, we can use BFS to find the shortest path from src to dst with at most k stops.
-
 // So in this we firstly create dist array to store the minimum cost to reach each node from src. Then we use a queue to perform BFS.
 // In the queue we store the current node, the cost to reach that node and the number of stops taken to reach that node.
 // We maintain stops to ensure that we do not exceed k stops. If we reach the destination node, we update the minimum cost to reach that node.
+
 class Solution {
 public:
     int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
