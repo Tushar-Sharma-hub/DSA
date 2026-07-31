@@ -1,4 +1,5 @@
 //Disjoint Set Union (DSU) or Union-Find data structure implementation in C++.
+//DSU is a data structure which helps to solve problems related to connected components in a graph, groups of elements, and equivalence relations.
 #include <iostream>
 #include <vector>
 using namespace std;
