@@ -8,6 +8,13 @@
 // A critical connection is a connection that, if removed, will make some servers unable to reach some other server.
 // Return all critical connections in the network in any order.
 
+//Approach: We will use Tarjan's algorithm to find bridges in the graph. We will maintain two arrays tin and low.
+//1. tin[node] will store the time of first visit of the node in dfs.
+//2. low[node] will store the lowest time of visit of the node or any of its descendants in dfs.Not parent of node.
+//3. Timer will be used to keep track of the time of visit of the nodes in dfs.
+//4. If low[v]>tin[node] then the edge (node,v) is a bridge in the graph because it means that there is no back edge from v or any of its descendants to node or any of its ancestors in dfs tree.
+//5. We will use a vector of vectors to store the bridges in the graph and return it as the answer.
+//T.C= O(V+E) S.C=O(V+E)
 class Solution {
 public:
     int timer=1;
