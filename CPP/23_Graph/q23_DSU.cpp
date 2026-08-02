@@ -1,58 +1,102 @@
-//Disjoint Set Union (DSU) or Union-Find data structure implementation in C++.
-//DSU is a data structure which helps to solve problems related to connected components in a graph, groups of elements, and equivalence relations.
+// Disjoint Set Union (DSU) / Union-Find
+// Optimizations:
+// 1. Path Compression
+// 2. Union by Rank
+// 3. Union by Size
+
 #include <iostream>
 #include <vector>
 using namespace std;
 
 class DisjointSetUnion {
-    public:
+public:
     vector<int> parent;
     vector<int> rank;
+    vector<int> size;
+
     DisjointSetUnion(int n) {
         parent.resize(n);
         rank.resize(n, 0);
+        size.resize(n, 1);
+
         for (int i = 0; i < n; i++) {
             parent[i] = i;
         }
     }
-    //Find fxn is used to find the representative of the set that a particular element belongs to.
-    //In this implementation if the element is not the representative of its set, we recursively call find on its parent until we reach the representative.
+
+    // Find the ultimate parent (representative) of a node
+    // Path compression makes future find operations faster
     int find(int node) {
         if (parent[node] == node)
             return node;
-        return parent[node] = find(parent[node]); //path compression optimization
+
+        return parent[node] = find(parent[node]);
     }
-    //Union fxn is used to merge two sets into one.
-    //In this implementation, we first find the representatives of the two sets that the elements belong to.
-    //If the representatives are different, we merge the sets by making one representative the parent of the other.
-    //We also use the rank array to keep track of the depth of the trees representing the sets,
-    //and we always attach the smaller tree to the root of the larger tree to keep the overall depth of the trees as small as possible.
+
+    // ---------------------------------------------------
+    // UNION BY RANK
+    // Attach the tree with smaller rank under the tree
+    // with larger rank.
+    // If ranks are equal, attach either one and increase
+    // the rank of the new root.
+    // ---------------------------------------------------
     void unionByRank(int u, int v) {
-        u = find(u);
-        v = find(v);
-        if (u == v)
+
+        int pu = find(u);
+        int pv = find(v);
+
+        if (pu == pv)
             return;
-        if (rank[u] < rank[v]) {
-            parent[u] = v;
+
+        if (rank[pu] < rank[pv]) {
+            parent[pu] = pv;
         }
-        else if (rank[u] > rank[v]) {
-            parent[v] = u;
+        else if (rank[pu] > rank[pv]) {
+            parent[pv] = pu;
         }
         else {
-            parent[v] = u;
-            rank[u]++;
+            parent[pv] = pu;
+            rank[pu]++;
+        }
+    }
+
+    // ---------------------------------------------------
+    // UNION BY SIZE
+    // Attach the smaller set under the larger set.
+    // size[root] stores the number of nodes in that set.
+    // ---------------------------------------------------
+    void unionBySize(int u, int v) {
+
+        int pu = find(u);
+        int pv = find(v);
+
+        if (pu == pv)
+            return;
+
+        if (size[pu] < size[pv]) {
+            parent[pu] = pv;
+            size[pv] += size[pu];
+        }
+        else {
+            parent[pv] = pu;
+            size[pu] += size[pv];
         }
     }
 
     void getInfo() {
+
         cout << "Parent Array:\n";
         for (int i = 0; i < parent.size(); i++)
             cout << parent[i] << " ";
-        cout << "\n\n";
 
-        cout << "Rank Array:\n";
+        cout << "\n\nRank Array:\n";
         for (int i = 0; i < rank.size(); i++)
             cout << rank[i] << " ";
+
+        cout << "\n\nSize Array:\n";
+        for (int i = 0; i < size.size(); i++)
+            cout << size[i] << " ";
+
         cout << endl;
     }
 };
@@ -61,17 +105,33 @@ int main() {
 
     DisjointSetUnion dsu(6);
 
+    // Using Union by Rank
     dsu.unionByRank(0, 2);
-    cout << dsu.find(2) << endl;
-
     dsu.unionByRank(1, 3);
     dsu.unionByRank(2, 5);
     dsu.unionByRank(0, 3);
-    cout << dsu.find(2) << endl;
 
-    dsu.unionByRank(0, 4);
+    cout << "Ultimate parent of 2: "
+         << dsu.find(2) << endl;
 
     dsu.getInfo();
+
+
+    cout << "\n-------------------------\n";
+
+    // Separate DSU to demonstrate Union by Size
+    DisjointSetUnion dsu2(6);
+
+    dsu2.unionBySize(0, 2);
+    dsu2.unionBySize(1, 3);
+    dsu2.unionBySize(2, 5);
+    dsu2.unionBySize(0, 3);
+    dsu2.unionBySize(0, 4);
+
+    cout << "Ultimate parent of 2: "
+         << dsu2.find(2) << endl;
+
+    dsu2.getInfo();
 
     return 0;
 }

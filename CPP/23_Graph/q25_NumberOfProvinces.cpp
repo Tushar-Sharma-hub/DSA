@@ -6,6 +6,7 @@
 // if the ith city and the jth city are directly connected, and isConnected[i][j] = 0 otherwise.
 // Return the total number of provinces.
 
+//With dfs
 class Solution {
 public:
     void dfs(int i,vector<vector<int>>& adj,vector<int>& vis){
@@ -27,5 +28,83 @@ public:
             }
         }
         return ans;
+    }
+};
+
+//With DSU
+class DisjointSetUnion {
+public:
+    vector<int> parent;
+    vector<int> rank;
+    vector<int> size;
+    DisjointSetUnion(int n) {
+        parent.resize(n);
+        rank.resize(n, 0);
+        size.resize(n, 1);
+
+        for (int i = 0; i < n; i++) {
+            parent[i] = i;
+        }
+    }
+    int find(int node) {
+        if (parent[node] == node)
+            return node;
+
+        return parent[node] = find(parent[node]);
+    }
+    void unionByRank(int u, int v) {
+
+        int pu = find(u);
+        int pv = find(v);
+
+        if (pu == pv)
+            return;
+
+        if (rank[pu] < rank[pv]) {
+            parent[pu] = pv;
+        }
+        else if (rank[pu] > rank[pv]) {
+            parent[pv] = pu;
+        }
+        else {
+            parent[pv] = pu;
+            rank[pu]++;
+        }
+    }
+    void unionBySize(int u, int v) {
+
+        int pu = find(u);
+        int pv = find(v);
+
+        if (pu == pv)
+            return;
+
+        if (size[pu] < size[pv]) {
+            parent[pu] = pv;
+            size[pv] += size[pu];
+        }
+        else {
+            parent[pv] = pu;
+            size[pu] += size[pv];
+        }
+    }
+};
+class Solution {
+public:
+    int findCircleNum(vector<vector<int>>& adj) {
+        int n=adj.size();
+        DisjointSetUnion ds(n);
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                if(adj[i][j]==1){
+                    ds.unionBySize(i,j);
+                }
+            }
+        }
+        int cnt=0;
+        for(int i=0;i<n;i++){
+            if(ds.parent[i]==i) cnt++;
+        }
+        return cnt;
     }
 };
