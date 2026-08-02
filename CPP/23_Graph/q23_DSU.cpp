@@ -14,7 +14,7 @@ public:
         rank.resize(n, 0);
         size.resize(n, 1);
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) { //initialize the parent of each node to itself
             parent[i] = i;
         }
     }
@@ -24,6 +24,8 @@ public:
 
         return parent[node] = find(parent[node]);
     }
+    //Rank is the depth of the tree, we will attach the smaller tree to the root of the larger tree.
+    //Depth will increase only when both trees have the same depth, so we will increase the rank of the root of the larger tree by 1.
     void unionByRank(int u, int v) {
 
         int pu = find(u);
@@ -43,6 +45,7 @@ public:
             rank[pu]++;
         }
     }
+    //Size is the number of nodes in the tree, we will attach the smaller tree to the root of the larger tree.
     void unionBySize(int u, int v) {
 
         int pu = find(u);
