@@ -3,6 +3,14 @@
 #include<stack>
 using namespace std;
 
+//Approach:
+//1. Create a stack to store the elements of the array.
+//2. Traverse the array from right to left.
+//3. For each element, pop elements from the stack until the top of the stack is
+//   greater than the current element or the stack is empty.
+//4. If the stack is empty, then there is no greater element for the current element
+//   and we store -1 in the answer array. Otherwise, we store the top of the stack in the answer array.
+//5. Push the current element onto the stack.
 vector<int> nextGreater(vector<int> arr){
     int n=arr.size();
     vector<int> ans(n);
