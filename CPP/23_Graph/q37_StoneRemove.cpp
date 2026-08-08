@@ -40,38 +40,35 @@ public:
     }
 };
 
+//Approach:
+//1.We use dsu to connect the stones in the same row and column.
+//2.For stone row it will be 0,1,2,3,... and for stone column it will be maxRow+1,maxRow+2,...
+//3.We will count the number of connected components and return n - cnt.
 class Solution {
 public:
     int removeStones(vector<vector<int>>& stones) {
         int n = stones.size();
-
-        DisjointSetUnion ds(n);
-
-        unordered_map<int, int> row;
-        unordered_map<int, int> col;
-
-        for (int i = 0; i < n; i++) {
-            int r = stones[i][0];
-            int c = stones[i][1];
-
-            if (row.count(r))
-                ds.unionBySize(i, row[r]);
-            else
-                row[r] = i;
-
-            if (col.count(c))
-                ds.unionBySize(i, col[c]);
-            else
-                col[c] = i;
+        int maxRow = 0;
+        int maxCol = 0;
+        for (auto it : stones) {
+            maxRow = max(maxRow, it[0]);
+            maxCol = max(maxCol, it[1]);
         }
-
-        int components = 0;
-
-        for (int i = 0; i < n; i++) {
-            if (ds.find(i) == i)
-                components++;
+        DisjointSetUnion ds(maxRow + maxCol + 2);
+        unordered_map<int, int> stoneNodes;
+        for (auto it : stones) {
+            int nodeRow = it[0];
+            int nodeCol = it[1] + maxRow + 1; 
+            ds.unionBySize(nodeRow, nodeCol);
+            stoneNodes[nodeRow] = 1;
+            stoneNodes[nodeCol] = 1;
         }
-
-        return n - components;
+        int cnt = 0;
+        for (auto it : stoneNodes) {
+            if (ds.find(it.first) == it.first) {
+                cnt++;
+            }
+        }
+        return n - cnt;
     }
 };
