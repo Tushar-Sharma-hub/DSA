@@ -55,7 +55,7 @@ public:
             maxCol = max(maxCol, it[1]);
         }
         DisjointSetUnion ds(maxRow + maxCol + 2);
-        unordered_map<int, int> stoneNodes;
+        unordered_map<int, int> stoneNodes; //stoneNodes will store the unique nodes that are part of the connected components
         for (auto it : stones) {
             int nodeRow = it[0];
             int nodeCol = it[1] + maxRow + 1; 
