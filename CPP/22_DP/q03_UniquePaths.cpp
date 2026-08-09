@@ -22,15 +22,17 @@ public:
 //Recursion plus memoization
 class Solution {
 public:
-    int helper(int m,int n,int i,int j,vector<vector<int>>& dp){
-        if(i==m && j==n) return 1;
-        if(i>m || j>n) return 0;
+    int helper(int i,int j,int x,int y,vector<vector<int>>& dp){
+        if(i==x && j==y) return 1;
+        if(i>x || j>y) return 0;
         if(dp[i][j]!=-1) return dp[i][j];
-        return dp[i][j]=helper(m,n,i,j+1,dp)+helper(m,n,i+1,j,dp);
+        int r=helper(i,j+1,x,y,dp);
+        int d=helper(i+1,j,x,y,dp);
+        return dp[i][j]=r+d;
     }
     int uniquePaths(int m, int n) {
         vector<vector<int>> dp(m,vector<int>(n,-1));
-        return helper(m-1,n-1,0,0,dp);
+        return helper(0,0,m-1,n-1,dp);
     }
 };
 

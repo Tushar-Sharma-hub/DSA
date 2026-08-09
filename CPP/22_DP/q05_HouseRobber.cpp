@@ -10,6 +10,9 @@
 // return the maximum amount of money you can rob tonight without alerting the police.
 
 //Recursion plus memoization (Top-down DP)
+//Intuition: At each house, we have two choices: either rob the current house and skip the next one, 
+//or skip the current house and consider the next one. We can use recursion to explore both options pick the max
+//and memoization to store the results of subproblems to avoid redundant calculations.
 class Solution {
 public:
     int helper(vector<int>& nums,int i,vector<int>& dp){
