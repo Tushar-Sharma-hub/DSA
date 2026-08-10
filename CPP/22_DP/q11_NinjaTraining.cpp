@@ -6,6 +6,7 @@
 // Given a n x 3-sized matrix, where matrix[i][0], matrix[i][1], and matrix[i][2], represent the merit points associated with running,
 //  stealth and fighting practice, on the (i+1)th day respectively. Return the maximum possible merit points that the ninja can earn.
 
+//Bottom-up DP approach with space optimization
 class Solution{
 public:
     int ninjaTraining(vector<vector<int>>& matrix){
@@ -21,3 +22,4 @@ public:
         return max(dp[0],max(dp[1],dp[2]));
     }
 };
+
