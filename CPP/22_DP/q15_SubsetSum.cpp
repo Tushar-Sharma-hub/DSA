@@ -40,13 +40,10 @@ class Solution {
                 bool notTake = dp[idx - 1][target];
                 // Take
                 bool take = false;
-                if(arr[idx] <= target)
-                    take = dp[idx - 1][target - arr[idx]];
-
+                if(arr[idx] <= target) take = dp[idx - 1][target - arr[idx]];
                 dp[idx][target] = take || notTake;
             }
         }
-
         return dp[n - 1][sum];
     }
 };
