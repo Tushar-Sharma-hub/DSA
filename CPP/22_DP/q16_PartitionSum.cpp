@@ -2,6 +2,33 @@
 // Given an integer array nums, return true if you can partition the array into two subsets such that 
 // the sum of the elements in both subsets is equal or false otherwise.
 
+//Recursion + Memoization
+// T.C: O(n*sum) where n=nums.size()
+// S.C: O(n*sum) + O(n) ~ O(n*sum)
+class Solution {
+public:
+    bool isSubsetSum(vector<vector<int>>& dp,int idx,vector<int>& arr, int sum) {
+        if(sum==0) return true;
+        if(idx==0) return (arr[idx]==sum);
+        if(dp[idx][sum]!=-1) return dp[idx][sum];
+        bool notTake=isSubsetSum(dp,idx-1,arr,sum);
+        bool take=false;
+        if(arr[idx]<=sum) take=isSubsetSum(dp,idx-1,arr,sum-arr[idx]);
+        return dp[idx][sum] = take | notTake;
+    }
+    bool canPartition(vector<int>& nums) {
+        int sum=0;
+        for(int e:nums)sum+=e;
+        if(sum%2) return false;
+        int n=nums.size();
+        vector<vector<int>> dp(n,vector<int>((sum/2)+1,-1));
+        return isSubsetSum(dp,n-1,nums,sum/2);
+    }
+};
+
+// Tabulation
+// T.C: O(n*sum) where n=nums.size()
+// S.C: O(n*sum)
 class Solution {
 public:
     bool isSubsetSum(vector<int>& arr, int sum) {
