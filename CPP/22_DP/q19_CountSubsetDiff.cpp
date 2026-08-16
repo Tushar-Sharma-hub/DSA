@@ -1,4 +1,4 @@
-// Partitions with Given Difference
+// Partitions with Given Difference - Gfg
 // Given an array arr[] and an integer diff, count the number of ways to partition the array 
 // into two subsets such that the difference between their sums is equal to diff.
 // Note: A partition in the array means dividing an array into two subsets say S1 and S2 
