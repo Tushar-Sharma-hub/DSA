@@ -4,6 +4,7 @@
 // Recursion + Memoization
 // T.C: O(n*sum) where n=arr.size()
 // S.C: O(n*sum) + O(n) ~ O(n*sum)
+//Just make notTake and take cases and return true if any of them is true.
 class Solution {
   public:
     bool f(int idx,vector<int>& arr,int sum,vector<vector<int>>& dp){
