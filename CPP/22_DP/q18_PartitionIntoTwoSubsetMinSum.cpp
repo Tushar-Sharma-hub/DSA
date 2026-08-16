@@ -2,6 +2,11 @@
 // Given an array arr[]  containing non-negative integers, divide it into two sets set1 and set2 
 // such that the absolute difference between their sums is minimum and find the minimum difference.
 
+// Recursion + Memoization
+// T.C: O(n*sum) where n=arr.size()
+// S.C: O(n*sum) + O(n) ~ O(n*sum)
+// So when finding subset sum the last row of the dp array will tell us which sums are possible with the given array.
+// So we can iterate through the last row and find the minimum difference between the two subsets.
 class Solution {
   public:
     int minDifference(vector<int>& arr) {
