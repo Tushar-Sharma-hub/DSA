@@ -65,3 +65,55 @@ public:
         return dp[n - 1][W];
     }
 };
+
+// Space Optimization
+// T.C: O(n*W) where n=val.size() and W=capacity
+// S.C: O(W)
+class Solution {
+public:
+    int knapsack(int W, vector<int>& val, vector<int>& wt) {
+        int n = val.size();
+        vector<int> prev(W+1,0),curr(W+1,0);
+        for(int w=wt[0];w<=W;w++){
+            prev[w]=val[0];
+        }
+        for(int idx=1;idx<n;idx++){
+            for(int w=0;w<=W;w++){
+                int notTake=prev[w];
+                int Take=0;
+                if(wt[idx]<=w){
+                    Take=val[idx]+prev[w-wt[idx]];
+                }
+                curr[w]=max(notTake,Take);
+            }
+            prev=curr;
+        }
+        return prev[W];
+    }
+};
+
+// Further Space Optimization
+// T.C: O(n*W) where n=val.size() and W=capacity
+// S.C: O(W)
+// Using only one array to store the previous row and updating it in reverse order to avoid overwriting values that are still needed for calculations.
+class Solution {
+public:
+    int knapsack(int W, vector<int>& val, vector<int>& wt) {
+        int n = val.size();
+        vector<int> prev(W+1,0);
+        for(int w=wt[0];w<=W;w++){
+            prev[w]=val[0];
+        }
+        for(int idx=1;idx<n;idx++){
+            for(int w=W;w>=0;w--){
+                int notTake=prev[w];
+                int Take=0;
+                if(wt[idx]<=w){
+                    Take=val[idx]+prev[w-wt[idx]];
+                }
+                prev[w]=max(notTake,Take);
+            }
+        }
+        return prev[W];
+    }
+};
