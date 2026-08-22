@@ -19,7 +19,7 @@ class Solution {
   public:
     int f(vector<vector<int>>& dp,int idx,vector<int>& arr,int t){
         if(idx == 0) {
-            if(t == 0 && arr[0] == 0) return 2;
+            if(t == 0 && arr[0] == 0) return 2; //agr arr[0] 0 hua toh either we can take it or not the result will be same i.e t==0 so return 2 ways.
             if(t == 0 || arr[0] == t) return 1;
             return 0;
         }
