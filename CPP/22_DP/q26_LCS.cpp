@@ -87,7 +87,8 @@ public:
                 }
             }
         }
-
+        // Backtrack from dp[n1][n2]: if characters match, add it and move diagonally; otherwise move to the adjacent 
+        // cell with the larger DP value, then reverse the result.
         string lcs = "";
         int i = n1;
         int j = n2;
