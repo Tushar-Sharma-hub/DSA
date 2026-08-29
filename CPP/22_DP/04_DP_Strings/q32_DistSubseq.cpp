@@ -58,11 +58,11 @@ public:
         int n1=s.size();
         int n2=t.size();
         vector<double> prev(n2+1,0),curr(n2+1,0);
-        prev[0]=curr[0]=1;
+        prev[0]=curr[0]=1; // if t has nothing then 1 way to create it without taking nothing.
         for(int i=1;i<=n1;i++){
             for(int j=1;j<=n2;j++){
-                curr[j]=prev[j];
-                if(s[i-1]==t[j-1]){
+                curr[j]=prev[j]; //not take
+                if(s[i-1]==t[j-1]){ //take if same
                     curr[j]+=prev[j-1];
                 }
             }
