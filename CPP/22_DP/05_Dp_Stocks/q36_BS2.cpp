@@ -18,42 +18,41 @@
 //5. The base case is when idx reaches the end of the prices array, in which case we return 0 as no more profit can be made.
 class Solution {
 public:
-    int f(vector<vector<long>>& dp,int idx,bool dec,vector<int>& prices){
+    int f(vector<vector<int>>& dp,int idx,vector<int>& prices,int b){
         if(idx==prices.size()) return 0;
-        if(dp[idx][dec]!=-1) return dp[idx][dec];
+        if(dp[idx][b]!=-1) return dp[idx][b];
         long profit=0;
-        if(dec){
-            profit=max(-prices[idx]+f(dp,idx+1,false,prices),0+f(dp,idx+1,true,prices));
+        if(b){
+            profit=max(f(dp,idx+1,prices,0)-prices[idx],f(dp,idx+1,prices,1)+0); //either buy or skip
         }else{
-            profit=max(prices[idx]+f(dp,idx+1,true,prices),0+f(dp,idx+1,false,prices));
+            profit=max(f(dp,idx+1,prices,1)+prices[idx],f(dp,idx+1,prices,0)+0); //either sell or skip
         }
-        return dp[idx][dec]=profit;
+        return dp[idx][b]=profit;
     }
     int maxProfit(vector<int>& prices) {
         int n=prices.size();
-        vector<vector<long>> dp(n+1,vector<long>(2,-1));
-        return f(dp,0,true,prices);
+        vector<vector<int>> dp(n,vector<int>(2,-1));
+        return f(dp,0,prices,1);
     }
 };
 
 //Tabulation
+//Approach:
+//1.Intialize a 2D vector dp of size (n+1) x 2 with all values set to 0, where n is the number of days.
+//2.Iterate through the days in reverse order (from n-1 to 0).
+//3.For each day, calculate the maximum profit for both buying and selling decisions:
+//   a. If we can buy (b=1), the maximum profit is the maximum of either buying the stock at prices[idx] and moving to the next day with b=0 (indicating we can sell next) or skipping buying and moving to the next day with b=1.
+//   b. If we can sell (b=0), the maximum profit is the maximum of either selling the stock at prices[idx] and moving to the next day with b=1 (indicating we can buy next) or skipping selling and moving to the next day with b=0.
+//4. Return the maximum profit starting from day 0 with the option to buy (b=1).
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        int n = prices.size();
-
-        vector<vector<long>> dp(n + 1, vector<long>(2, 0));
-        for (int idx = n - 1; idx >= 0; idx--) {
-            dp[idx][1] = max(
-                -prices[idx] + dp[idx + 1][0],
-                dp[idx + 1][1]
-            );
-            dp[idx][0] = max(
-                prices[idx] + dp[idx + 1][1],
-                dp[idx + 1][0]
-            );
+        int n=prices.size();
+        vector<vector<int>> dp(n+1,vector<int>(2,0));
+        for(int i=n-1;i>=0;i--){
+            dp[i][1]=max(dp[i+1][0]-prices[i],dp[i+1][1]);
+            dp[i][0]=max(dp[i+1][1]+prices[i],dp[i+1][0]);
         }
-
         return dp[0][1];
     }
 };
