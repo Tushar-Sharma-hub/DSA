@@ -43,8 +43,8 @@ public:
 };
 
 //Space Optimization
-//In tabulation, dp[i+1] is represented by f1 and dp[i+2] is represented by f2. 
-//So we can use two 1D arrays to store the values of dp[i+1] and dp[i+2] instead of using a 2D array.
+//In tabulation, dp[i+1] is represented by f1 and dp[i+2] is represented by f2 and dp[i] is represented by curr.
+//We update f2 to f1 and f1 to curr after each iteration.
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
