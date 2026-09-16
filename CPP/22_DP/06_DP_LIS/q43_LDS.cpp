@@ -1,14 +1,17 @@
-// Get Longest Increasing Subsequence
-// Given an array of integers arr[], return the Longest Increasing Subsequence (LIS) of the given array. 
-// LIS is the longest subsequence where each element is strictly greater than the previous one.
-// If multiple LIS exist, return the one that appears first based on the lexicographical order of indices 
-// (i.e., the earliest combination of positions from the original sequence).
+// 368. Largest Divisible Subset
+// Given a set of distinct positive integers nums, return the largest subset answer 
+// such that every pair (answer[i], answer[j]) of elements in this subset satisfies:
+// answer[i] % answer[j] == 0, or
+// answer[j] % answer[i] == 0
+// If there are multiple solutions, return any of them.
 
 //Just store the index of the previous element in vector numsIdx and 
-//then backtrack from the last index of the LIS to get the elements of the LIS.
+//then backtrack from the last index of the largest divisible subset to get the elements of the largest divisible subset.
+//Like we did in LIS print problem.
 class Solution {
-  public:
-    vector<int> getLIS(vector<int>& nums) {
+public:
+    vector<int> largestDivisibleSubset(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
         int n = nums.size();
         vector<int> dp(n,1);
         vector<int> numsIdx(n);
@@ -16,7 +19,7 @@ class Solution {
         for(int i=0;i<n;i++){
             numsIdx[i]=i;
             for(int j=0;j<i;j++){
-                if(nums[j]<nums[i] && 1+dp[j]>dp[i]){
+                if(nums[i]%nums[j]==0 && 1+dp[j]>dp[i]){
                     dp[i]=1+dp[j];
                     numsIdx[i]=j;
                 }
