@@ -86,3 +86,26 @@ public:
         return mans;
     }
 };
+
+//Binary Search
+//We will maintain a temp array which will store the increasing subsequence. 
+//For every element in the input array we will check if it is greater than the last element of temp array then we will push it to temp array otherwise 
+//we will find the index of the first element in temp array which is greater than or equal to the current element and replace that element with current element. 
+//Finally we will return the size of temp array as the answer.
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& arr) {
+        int n = arr.size();
+        vector<int> temp;
+        temp.push_back(arr[0]);
+        for(int i=1;i<n;i++){
+            if(arr[i]>temp.back()){
+                temp.push_back(arr[i]);
+            }else{
+                int idx=lower_bound(temp.begin(),temp.end(),arr[i])-temp.begin();
+                temp[idx]=arr[i];
+            }
+        }
+        return temp.size();
+    }
+};
