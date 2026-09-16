@@ -87,6 +87,9 @@ public:
     }
 };
 
+//Most optimized solution
+//Time complexity: O(nlogn)
+//Space complexity: O(n)
 //Binary Search
 //We will maintain a temp array which will store the increasing subsequence. 
 //For every element in the input array we will check if it is greater than the last element of temp array then we will push it to temp array otherwise 
