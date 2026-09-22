@@ -76,7 +76,7 @@ public:
         vector<int> dp(n,1);
         int mans=0;
         for(int i=0;i<n;i++){
-            for(int j=0;j<=i;j++){
+            for(int j=0;j<i;j++){
                 if(nums[j]<nums[i]){
                     dp[i]=max(1+dp[j],dp[i]);
                 }
