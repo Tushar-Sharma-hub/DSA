@@ -27,32 +27,32 @@ class Solution {
 
 //Tabulation
 class Solution {
-  public:
+public:
     int matrixMultiplication(vector<int> &arr) {
         int n = arr.size();
+        vector<vector<int>> dp(n, vector<int>(n, -1));
 
-        vector<vector<int>> dp(n, vector<int>(n, 0));
+        // Base case
+        for(int i = 1; i < n; i++) {
+            dp[i][i] = 0;
+        }
 
-        // len = length of matrix chain
-        for(int len = 2; len <= n - 1; len++) {
+        for(int i = n - 1; i >= 1; i--) {
+            for(int j = i + 1; j < n; j++) {
+                int mini = 1e9;
 
-            for(int i = 1; i + len - 1 <= n - 1; i++) {
-
-                int j = i + len - 1;
-                dp[i][j] = 1e9;
-
-                // Try every possible partition
                 for(int k = i; k < j; k++) {
-
-                    int steps = arr[i - 1] * arr[k] * arr[j]
+                    int steps = arr[i-1] * arr[k] * arr[j]
                               + dp[i][k]
-                              + dp[k + 1][j];
+                              + dp[k+1][j];
 
-                    dp[i][j] = min(dp[i][j], steps);
+                    mini = min(mini, steps);
                 }
+
+                dp[i][j] = mini;
             }
         }
 
-        return dp[1][n - 1];
+        return dp[1][n-1];
     }
 };
