@@ -3,6 +3,7 @@
 #include<vector>
 using namespace std;
 
+//T.C: O(n) and S.C: O(n)
 int trap(vector<int>& height) {
     int n = height.size();
     if (n <= 2) return 0; // Not enough bars to trap water
