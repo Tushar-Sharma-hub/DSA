@@ -31,3 +31,25 @@ public:
         return ans;
     }
 };
+
+//Time Complexity-O(n)
+//Space Complexity-O(n)
+//Approach-2: Using hashing only
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        int n= nums.size();
+        long long sum=0;
+        int count=0;
+        unordered_map<long long,int> mp;
+        for(int i=0;i<n;i++){
+            sum+=nums[i];
+            if(sum==k) count++;
+            if(mp.find(sum-k)!=mp.end()){
+                count+=mp[sum-k];
+            }
+            mp[sum]++;
+        }
+        return count;
+    }
+};
